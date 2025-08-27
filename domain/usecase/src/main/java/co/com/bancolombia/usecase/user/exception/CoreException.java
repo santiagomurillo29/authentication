@@ -11,5 +11,4 @@ public class CoreException extends RuntimeException {
         super(error.getMessage());
         this.error = error;
     }
-
 }

@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class UserModel {
-    private String idUser;
+    private Long idUser;
     private String nameUser;
     private String lastNameUser;
     private String documentUser;
@@ -14,7 +14,7 @@ public class UserModel {
     private String emailUser;
     private BigDecimal baseSalaryUser;
 
-    public UserModel(String idUser, String nameUser, String lastNameUser, String documentUser, LocalDate birthdayUser, String addressUser, String phoneUser, String emailUser, BigDecimal baseSalaryUser) {
+    public UserModel(Long idUser, String nameUser, String lastNameUser, String documentUser, LocalDate birthdayUser, String addressUser, String phoneUser, String emailUser, BigDecimal baseSalaryUser) {
         this.idUser = idUser;
         this.nameUser = nameUser;
         this.lastNameUser = lastNameUser;
@@ -26,20 +26,20 @@ public class UserModel {
         this.baseSalaryUser = baseSalaryUser;
     }
 
+    public Long getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(Long idUser) {
+        this.idUser = idUser;
+    }
+
     public String getNameUser() {
         return nameUser;
     }
 
     public void setNameUser(String nameUser) {
         this.nameUser = nameUser;
-    }
-
-    public String getIdUser() {
-        return idUser;
-    }
-
-    public void setIdUser(String idUser) {
-        this.idUser = idUser;
     }
 
     public String getLastNameUser() {
@@ -58,20 +58,20 @@ public class UserModel {
         this.documentUser = documentUser;
     }
 
-    public LocalDate getBirthdayUser() {
-        return birthdayUser;
-    }
-
-    public void setBirthdayUser(LocalDate birthdayUser) {
-        this.birthdayUser = birthdayUser;
-    }
-
     public String getAddressUser() {
         return addressUser;
     }
 
     public void setAddressUser(String addressUser) {
         this.addressUser = addressUser;
+    }
+
+    public LocalDate getBirthdayUser() {
+        return birthdayUser;
+    }
+
+    public void setBirthdayUser(LocalDate birthdayUser) {
+        this.birthdayUser = birthdayUser;
     }
 
     public String getPhoneUser() {
@@ -97,4 +97,5 @@ public class UserModel {
     public void setBaseSalaryUser(BigDecimal baseSalaryUser) {
         this.baseSalaryUser = baseSalaryUser;
     }
+
 }

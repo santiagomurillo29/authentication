@@ -1,0 +1,57 @@
+package co.com.bancolombia.usecase;
+
+import co.com.bancolombia.model.user.gateways.UserPersistencePort;
+import co.com.bancolombia.model.user.globalmessage.GlobalMessage;
+import co.com.bancolombia.model.user.model.UserModel;
+import co.com.bancolombia.usecase.user.exception.BusinessException;
+import co.com.bancolombia.usecase.user.usecase.UserUseCase;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+import reactor.core.publisher.Mono;
+import reactor.test.StepVerifier;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
+import static org.mockito.BDDMockito.given;
+
+@ExtendWith(MockitoExtension.class)
+public class UserUseCaseTest {
+
+    @Mock
+    UserPersistencePort repo;
+
+    @InjectMocks
+    UserUseCase useCase;
+
+    @Test
+    void createUser_whenNotExists_thenSave() {
+        UserModel model = new UserModel(1L, "string", "string", "1000883010", LocalDate.of(2004, 10, 1), "Cra 78", "3002002030", "string@gmail.com", BigDecimal.valueOf(3000000.00));
+
+        given(repo.existsUserByEmail(model.getEmailUser())).willReturn(Mono.just(false));
+        given(repo.saveUser(model)).willReturn(Mono.just(model));
+
+        StepVerifier.create(useCase.createUser(model))
+                .expectNext(model)
+                .verifyComplete();
+    }
+
+    @Test
+    void createUser_whenEmailExists_thenSave() {
+        UserModel model = new UserModel(1L, "string", "string", "1000883010", LocalDate.of(2004, 10, 1), "Cra 78", "3002002030", "string@gmail.com", BigDecimal.valueOf(3000000.00));
+
+        given(repo.existsUserByEmail(model.getEmailUser())).willReturn(Mono.just(true));
+
+        StepVerifier.create(useCase.createUser(model))
+                .expectErrorSatisfies(error -> {
+                    assertInstanceOf(BusinessException.class, error);
+                    assertEquals(GlobalMessage.BAD_PARAMETER.getMessage(), error.getMessage());
+                })
+                .verify();
+    }
+}
