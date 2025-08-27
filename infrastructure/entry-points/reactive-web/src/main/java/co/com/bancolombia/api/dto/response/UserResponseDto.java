@@ -13,7 +13,7 @@ import java.time.LocalDate;
 @Data
 public class UserResponseDto {
     @Schema(description = "Unique identifier of the user")
-    private String idUser;
+    private Long idUser;
 
     @Schema(description = "User's first name", example = "string")
     private String nameUser;

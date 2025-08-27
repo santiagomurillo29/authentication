@@ -2,7 +2,7 @@ package co.com.bancolombia.api.router;
 
 import co.com.bancolombia.api.dto.request.UserRequestDto;
 import co.com.bancolombia.api.dto.response.UserResponseDto;
-import co.com.bancolombia.api.handler.Handler;
+import co.com.bancolombia.api.handler.HandlerUser;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -13,20 +13,19 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.ServerResponse;
-
 import static org.springframework.web.reactive.function.server.RequestPredicates.GET;
 import static org.springframework.web.reactive.function.server.RequestPredicates.POST;
 import static org.springframework.web.reactive.function.server.RouterFunctions.route;
 
 @Configuration
-public class RouterRest {
+public class RouterRestUser {
 
     @Bean
     @RouterOperations({
             @RouterOperation(
                     path = "/api/v1/usuarios",
                     method = RequestMethod.GET,
-                    beanClass = Handler.class,
+                    beanClass = HandlerUser.class,
                     beanMethod = "GetUser",
                     operation = @Operation(
                             summary = "Get all users",
@@ -38,7 +37,7 @@ public class RouterRest {
             @RouterOperation(
                     path = "/api/v1/usuarios",
                     method = RequestMethod.POST,
-                    beanClass = Handler.class,
+                    beanClass = HandlerUser.class,
                     beanMethod = "CreateUser",
                     consumes = "application/json",
                     produces = "application/json",
@@ -66,8 +65,8 @@ public class RouterRest {
                     )
             )
     })
-    public RouterFunction<ServerResponse> routerFunction(Handler handler) {
-        return route(GET("/api/v1/usuarios"), handler::GetUser)
-                .andRoute(POST("/api/v1/usuarios"), handler::CreateUser);
+    public RouterFunction<ServerResponse> routerFunction(HandlerUser handlerUser) {
+        return route(GET("/api/v1/usuarios"), handlerUser::GetUser)
+                .andRoute(POST("/api/v1/usuarios"), handlerUser::CreateUser);
     }
 }

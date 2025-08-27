@@ -4,22 +4,17 @@ import co.com.bancolombia.api.dto.request.UserRequestDto;
 import co.com.bancolombia.api.dto.request.validation.RequestValidator;
 import co.com.bancolombia.api.mapper.UserMapper;
 import co.com.bancolombia.usecase.user.usecase.api.UserServicePort;
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Mono;
 
 @Component
 @RequiredArgsConstructor
-public class Handler {
+public class HandlerUser {
 
     private final UserServicePort userServicePort;
     private final UserMapper userMapper;
@@ -41,6 +36,4 @@ public class Handler {
                 .contentType(MediaType.APPLICATION_JSON)
                 .bodyValue("[]");
     }
-
-
 }
