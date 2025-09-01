@@ -35,6 +35,27 @@ public class RouterRestUser {
                     )
             ),
             @RouterOperation(
+                    path = "/api/v1/usuario/correo",
+                    method = RequestMethod.GET,
+                    beanClass = HandlerUser.class,
+                    beanMethod = "GetUserByEmail",
+                    operation = @Operation(
+                            operationId = "getUserByEmail",
+                            summary = "Get user by email",
+                            parameters = {
+                                    @io.swagger.v3.oas.annotations.Parameter(
+                                            name = "emailUser",
+                                            description = "User email",
+                                            required = true,
+                                            example = "user@mail.com"
+                                    )
+                            },
+                            responses = {
+                                    @ApiResponse(responseCode = "200", description = "OK")
+                            }
+                    )
+            ),
+            @RouterOperation(
                     path = "/api/v1/usuarios",
                     method = RequestMethod.POST,
                     beanClass = HandlerUser.class,
@@ -67,6 +88,7 @@ public class RouterRestUser {
     })
     public RouterFunction<ServerResponse> routerFunction(HandlerUser handlerUser) {
         return route(GET("/api/v1/usuarios"), handlerUser::GetUser)
-                .andRoute(POST("/api/v1/usuarios"), handlerUser::CreateUser);
+                .andRoute(POST("/api/v1/usuarios"), handlerUser::CreateUser)
+                .andRoute(GET("/api/v1/usuario/correo"), handlerUser::GetUserByEmail);
     }
 }

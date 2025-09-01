@@ -1,7 +1,9 @@
 package co.com.bancolombia.usecase;
 
+import co.com.bancolombia.model.user.gateways.RolePersistencePort;
 import co.com.bancolombia.model.user.gateways.UserPersistencePort;
 import co.com.bancolombia.model.user.globalmessage.GlobalMessage;
+import co.com.bancolombia.model.user.model.RoleModel;
 import co.com.bancolombia.model.user.model.UserModel;
 import co.com.bancolombia.usecase.user.exception.BusinessException;
 import co.com.bancolombia.usecase.user.usecase.UserUseCase;
@@ -26,14 +28,19 @@ public class UserUseCaseTest {
     @Mock
     UserPersistencePort repo;
 
+    @Mock
+    RolePersistencePort repoRole;
+
     @InjectMocks
     UserUseCase useCase;
 
     @Test
     void createUser_whenNotExists_thenSave() {
-        UserModel model = new UserModel(1L, "string", "string", "1000883010", LocalDate.of(2004, 10, 1), "Cra 78", "3002002030", "string@gmail.com", BigDecimal.valueOf(3000000.00));
+        RoleModel roleModel = new RoleModel(1L, "CUSTOMER", "description");
+        UserModel model = new UserModel(1L, "string", "string", "1000883010", LocalDate.of(2004, 10, 1), "Cra 78", "3002002030", "string@gmail.com", BigDecimal.valueOf(3000000.00), roleModel);
 
         given(repo.existsUserByEmail(model.getEmailUser())).willReturn(Mono.just(false));
+        given(repoRole.findRoleById(roleModel.getIdRole())).willReturn(Mono.just(roleModel));
         given(repo.saveUser(model)).willReturn(Mono.just(model));
 
         StepVerifier.create(useCase.createUser(model))
@@ -43,7 +50,8 @@ public class UserUseCaseTest {
 
     @Test
     void createUser_whenEmailExists_thenSave() {
-        UserModel model = new UserModel(1L, "string", "string", "1000883010", LocalDate.of(2004, 10, 1), "Cra 78", "3002002030", "string@gmail.com", BigDecimal.valueOf(3000000.00));
+        RoleModel roleModel = new RoleModel(1L, "CUSTOMER", "description");
+        UserModel model = new UserModel(1L, "string", "string", "1000883010", LocalDate.of(2004, 10, 1), "Cra 78", "3002002030", "string@gmail.com", BigDecimal.valueOf(3000000.00), roleModel);
 
         given(repo.existsUserByEmail(model.getEmailUser())).willReturn(Mono.just(true));
 
