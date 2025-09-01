@@ -46,14 +46,21 @@ public class UserRequestDto {
     @Pattern(regexp = "^[0-9]{7,15}$", message = "The phone number must contain between 7 and 15 digits")
     private String phoneUser;
 
-    @Schema(description = "email of the user", example = "string@gmail.com")
+    @Schema(description = "email of the user", example = "user@gmail.com")
     @NotBlank(message = "The email must not be empty or null")
     @Email(message = "The email must be a valid email address")
     private String emailUser;
 
-    @Schema(description = "User base salary", example = "3000000.00")
+    @Schema(description = "User base salary", example = "3000000")
     @NotNull(message = "The base salary must not be null")
     @DecimalMin(value = "0.0", inclusive = false, message = "The base salary must be greater than 0")
+    @DecimalMax(value = "15000000.0", inclusive = true, message = "The base salary must not exceed 15000000")
     @Digits(integer = 10, fraction = 2, message = "The base salary must have up to 10 digits and 2 decimals")
     private BigDecimal baseSalaryUser;
+
+    @Schema(description = "Role id", example = "1")
+    @NotNull(message = "The role must not be null")
+    @DecimalMin(value = "1", message = "The role must be greater than 1")
+    @DecimalMax(value = "3", message = "The role must not exceed 3")
+    private Long idRole;
 }

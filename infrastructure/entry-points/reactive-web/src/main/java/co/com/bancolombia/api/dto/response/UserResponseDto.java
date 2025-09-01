@@ -1,6 +1,9 @@
 package co.com.bancolombia.api.dto.response;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -39,4 +42,9 @@ public class UserResponseDto {
     @Schema(description = "User's base salary", example = "3500000.00")
     private BigDecimal baseSalaryUser;
 
+    @Schema(description = "Role id", example = "1")
+    private Long idRole;
+
+    @Schema(description = "Role name", example = "string")
+    private String nameRole;
 }

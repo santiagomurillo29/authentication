@@ -8,7 +8,8 @@ import lombok.RequiredArgsConstructor;
 public enum GlobalMessage {
 
     BAD_PARAMETER(GlobalMessage.STATUS_CODE_400, "The email is already registered"),
-    NOT_FOUND(GlobalMessage.STATUS_CODE_404, "Name not found"),
+    NOT_FOUND_USER(GlobalMessage.STATUS_CODE_404, "User not found"),
+    NOT_FOUND_ROLE(GlobalMessage.STATUS_CODE_404, "User not found"),
     DATABASE_ERROR(GlobalMessage.STATUS_CODE_500, "Database is down"),
     INSUFFICIENT_STOCK(GlobalMessage.STATUS_CODE_400, "There is not enough stock");
 

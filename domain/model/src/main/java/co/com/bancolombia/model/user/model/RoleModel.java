@@ -1,14 +1,30 @@
 package co.com.bancolombia.model.user.model;
 
 public class RoleModel {
-    private String idRole;
+
+    private Long idRole;
     private String nameRole;
     private String descriptionRole;
 
-    public RoleModel(String idRole, String nameRole, String descriptionRole) {
+    public RoleModel() {
+    }
+
+    public RoleModel(Long idRole, String nameRole, String descriptionRole) {
         this.idRole = idRole;
         this.nameRole = nameRole;
         this.descriptionRole = descriptionRole;
+    }
+
+    public RoleModel(Long idRole) {
+        this.idRole = idRole;
+    }
+
+    public Long getIdRole() {
+        return idRole;
+    }
+
+    public void setIdRole(Long idRole) {
+        this.idRole = idRole;
     }
 
     public String getNameRole() {
@@ -25,13 +41,5 @@ public class RoleModel {
 
     public void setDescriptionRole(String descriptionRole) {
         this.descriptionRole = descriptionRole;
-    }
-
-    public String getIdRole() {
-        return idRole;
-    }
-
-    public void setIdRole(String idRole) {
-        this.idRole = idRole;
     }
 }

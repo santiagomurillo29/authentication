@@ -36,4 +36,13 @@ public class HandlerUser {
                 .contentType(MediaType.APPLICATION_JSON)
                 .bodyValue("[]");
     }
+
+    public Mono<ServerResponse> GetUserByEmail(ServerRequest serverRequest) {
+        return Mono.justOrEmpty(serverRequest.queryParam("emailUser"))
+                .flatMap(userServicePort::findUserByEmail)
+                .map(userMapper::toDtoUser)
+                .flatMap(response -> ServerResponse.status(HttpStatus.OK)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .bodyValue(response));
+    }
 }
