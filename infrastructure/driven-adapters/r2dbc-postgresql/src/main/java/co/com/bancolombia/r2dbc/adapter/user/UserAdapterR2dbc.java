@@ -1,12 +1,9 @@
 package co.com.bancolombia.r2dbc.adapter;
 
 import co.com.bancolombia.model.user.gateways.UserPersistencePort;
-import co.com.bancolombia.model.user.model.RoleModel;
 import co.com.bancolombia.model.user.model.UserModel;
 import co.com.bancolombia.r2dbc.health.R2dbcSafeExecutor;
-import co.com.bancolombia.r2dbc.mapper.RoleMapperR2dbc;
 import co.com.bancolombia.r2dbc.mapper.UserMapperR2dbc;
-import co.com.bancolombia.r2dbc.repository.RoleRepository;
 import co.com.bancolombia.r2dbc.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

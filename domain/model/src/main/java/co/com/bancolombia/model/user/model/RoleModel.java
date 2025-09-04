@@ -1,4 +1,4 @@
-package co.com.bancolombia.model.user.model;
+package co.com.bancolombia.model.user.model.role;
 
 public class RoleModel {
 

@@ -1,6 +1,6 @@
 package co.com.bancolombia.api.handler;
 
-import co.com.bancolombia.api.dto.request.UserRequestDto;
+import co.com.bancolombia.api.dto.request.user.UserRequestDto;
 import co.com.bancolombia.api.dto.request.validation.RequestValidator;
 import co.com.bancolombia.api.mapper.UserMapper;
 import co.com.bancolombia.usecase.user.usecase.api.UserServicePort;
