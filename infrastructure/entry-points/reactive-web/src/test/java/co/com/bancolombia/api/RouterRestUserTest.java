@@ -1,11 +1,12 @@
 package co.com.bancolombia.api;
 
-import co.com.bancolombia.api.dto.request.UserRequestDto;
+import co.com.bancolombia.api.dto.request.user.UserRequestDto;
 import co.com.bancolombia.api.dto.request.validation.RequestValidator;
-import co.com.bancolombia.api.dto.response.UserResponseDto;
-import co.com.bancolombia.api.handler.HandlerUser;
-import co.com.bancolombia.api.mapper.UserMapper;
-import co.com.bancolombia.api.router.RouterRestUser;
+import co.com.bancolombia.api.dto.response.user.UserResponseDto;
+import co.com.bancolombia.api.handler.user.HandlerUser;
+import co.com.bancolombia.api.mapper.user.UserMapper;
+import co.com.bancolombia.api.router.user.RouterRestUser;
+import co.com.bancolombia.model.user.model.RoleModel;
 import co.com.bancolombia.model.user.model.UserModel;
 import co.com.bancolombia.usecase.user.usecase.api.UserServicePort;
 import org.junit.jupiter.api.Test;
@@ -40,9 +41,10 @@ class RouterRestTest {
 
     @Test
     void createUser_endpoint() {
-        UserRequestDto request = new UserRequestDto("string", "string", "1000883010", LocalDate.of(2004, 10, 1), "Cra 78", "3002002030", "string@gmail.com", BigDecimal.valueOf(3000000.00));
-        UserModel model = new UserModel(1L, "string", "string", "1000883010", LocalDate.of(2004, 10, 1), "Cra 78", "3002002030", "string@gmail.com", BigDecimal.valueOf(3000000.00));
-        UserResponseDto response = new UserResponseDto(1L, "string", "string", "1000883010", LocalDate.of(2004, 10, 1), "Cra 78", "3002002030", "string@gmail.com", BigDecimal.valueOf(3000000.00));
+        RoleModel roleModel = new RoleModel(1L, "CUSTOMER", "Customer description");
+        UserRequestDto request = new UserRequestDto("nameUser", "lastNameUser", "1000883010", LocalDate.of(2004, 10, 1), "Cra 78", "3002002030", "string@gmail.com", BigDecimal.valueOf(3000000.00), roleModel.getIdRole());
+        UserModel model = new UserModel(1L, "nameUser", "lastNameUser", "1000883010", LocalDate.of(2004, 10, 1), "Cra 78", "3002002030", "string@gmail.com", BigDecimal.valueOf(3000000.00), roleModel);
+        UserResponseDto response = new UserResponseDto(1L, "nameUser", "lastNameUser", "1000883010", LocalDate.of(2004, 10, 1), "Cra 78", "3002002030", "string@gmail.com", BigDecimal.valueOf(3000000.00), roleModel.getIdRole(), roleModel.getNameRole());
 
         given(validator.validate(any())).willReturn(Mono.just(request));
         given(mapper.toModelUser(any())).willReturn(model);

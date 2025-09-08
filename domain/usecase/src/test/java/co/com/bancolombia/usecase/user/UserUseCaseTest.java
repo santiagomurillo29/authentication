@@ -2,7 +2,7 @@ package co.com.bancolombia.usecase;
 
 import co.com.bancolombia.model.user.gateways.RolePersistencePort;
 import co.com.bancolombia.model.user.gateways.UserPersistencePort;
-import co.com.bancolombia.model.user.globalmessage.GlobalMessage;
+import co.com.bancolombia.model.globalmessage.GlobalMessage;
 import co.com.bancolombia.model.user.model.RoleModel;
 import co.com.bancolombia.model.user.model.UserModel;
 import co.com.bancolombia.usecase.user.exception.BusinessException;
