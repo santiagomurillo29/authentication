@@ -1,14 +1,14 @@
 server:
-  port: 8080
+  port: 8085
 spring:
   application:
     name: "Authentication"
   devtools:
     add-properties: false
   r2dbc:
-    url: r2dbc:postgresql://localhost:5432/Authentication
-    username: postgres
-    password: 30052630
+    url: ${SPRING_R2DBC_URL:r2dbc:postgresql://postgres-auth:5432/authentication_db}
+    username: ${SPRING_R2DBC_USERNAME:root}
+    password: ${SPRING_R2DBC_PASSWORD:password}
   sql:
     init:
       mode: always
@@ -16,15 +16,23 @@ spring:
       r2dbc:
         repositories:
           enabled: true
-
 adapters:
   r2dbc:
-    host: localhost
+    host: postgres-auth
     port: 5432
-    database: Authentication
+    database: authentication_db
     schema: public
-    username: postgres
-    password: 30052630
+    username: root
+    password: password
+
+#adapters:
+#    r2dbc:
+#      host: localhost
+#      port: 5432
+#      database: Authentication
+#      schema: public
+#      username: postgres
+#      password: 30052630
 
 management:
   endpoints:
@@ -37,3 +45,7 @@ management:
         enabled: true
 cors:
   allowed-origins: "http://localhost:4200,http://localhost:8080"
+
+jwt:
+  secret: "mysuperlongsecretkeythatismorethan32bytes123!"
+  expiration: 3600000

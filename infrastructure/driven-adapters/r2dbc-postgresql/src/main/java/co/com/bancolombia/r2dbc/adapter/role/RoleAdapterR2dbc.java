@@ -1,10 +1,10 @@
-package co.com.bancolombia.r2dbc.adapter;
+package co.com.bancolombia.r2dbc.adapter.role;
 
 import co.com.bancolombia.model.user.gateways.RolePersistencePort;
 import co.com.bancolombia.model.user.model.RoleModel;
 import co.com.bancolombia.r2dbc.health.R2dbcSafeExecutor;
-import co.com.bancolombia.r2dbc.mapper.RoleMapperR2dbc;
-import co.com.bancolombia.r2dbc.repository.RoleRepository;
+import co.com.bancolombia.r2dbc.mapper.role.RoleMapperR2dbc;
+import co.com.bancolombia.r2dbc.repository.role.RoleRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;

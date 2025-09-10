@@ -1,4 +1,4 @@
-package co.com.bancolombia.api.mapper;
+package co.com.bancolombia.api.mapper.user;
 
 import co.com.bancolombia.api.dto.request.user.UserRequestDto;
 import co.com.bancolombia.api.dto.response.user.UserResponseDto;

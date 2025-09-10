@@ -1,15 +1,15 @@
 package co.com.bancolombia.r2dbc.helper;
 
-import co.com.bancolombia.model.user.globalmessage.GlobalMessage;
+import co.com.bancolombia.model.globalmessage.GlobalMessage;
 import co.com.bancolombia.model.user.model.RoleModel;
 import co.com.bancolombia.model.user.model.UserModel;
-import co.com.bancolombia.r2dbc.adapter.RoleAdapterR2dbc;
-import co.com.bancolombia.r2dbc.adapter.UserAdapterR2dbc;
-import co.com.bancolombia.r2dbc.entity.UserEntity;
+import co.com.bancolombia.r2dbc.adapter.role.RoleAdapterR2dbc;
+import co.com.bancolombia.r2dbc.adapter.user.UserAdapterR2dbc;
+import co.com.bancolombia.r2dbc.entity.user.UserEntity;
 import co.com.bancolombia.r2dbc.exception.DataBaseException;
 import co.com.bancolombia.r2dbc.health.R2dbcSafeExecutor;
-import co.com.bancolombia.r2dbc.mapper.UserMapperR2dbc;
-import co.com.bancolombia.r2dbc.repository.UserRepository;
+import co.com.bancolombia.r2dbc.mapper.user.UserMapperR2dbc;
+import co.com.bancolombia.r2dbc.repository.user.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

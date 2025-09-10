@@ -1,6 +1,6 @@
 package co.com.bancolombia.r2dbc.health;
 
-import co.com.bancolombia.model.user.globalmessage.GlobalMessage;
+import co.com.bancolombia.model.globalmessage.GlobalMessage;
 import co.com.bancolombia.r2dbc.exception.DataBaseException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

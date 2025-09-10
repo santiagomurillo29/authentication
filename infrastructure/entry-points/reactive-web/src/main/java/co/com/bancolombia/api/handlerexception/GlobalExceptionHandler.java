@@ -1,9 +1,9 @@
 package co.com.bancolombia.api.handlerexception;
 
 import co.com.bancolombia.api.dto.response.exception.ErrorResponseBodyDto;
-import co.com.bancolombia.model.user.globalmessage.GlobalMessage;
+import co.com.bancolombia.model.globalmessage.GlobalMessage;
 import co.com.bancolombia.r2dbc.exception.DataBaseException;
-import co.com.bancolombia.usecase.user.exception.BusinessException;
+import co.com.bancolombia.usecase.exception.BusinessException;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
 import org.slf4j.Logger;

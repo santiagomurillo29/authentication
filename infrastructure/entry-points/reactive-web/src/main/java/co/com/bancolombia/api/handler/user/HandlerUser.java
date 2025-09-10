@@ -1,8 +1,8 @@
-package co.com.bancolombia.api.handler;
+package co.com.bancolombia.api.handler.user;
 
 import co.com.bancolombia.api.dto.request.user.UserRequestDto;
 import co.com.bancolombia.api.dto.request.validation.RequestValidator;
-import co.com.bancolombia.api.mapper.UserMapper;
+import co.com.bancolombia.api.mapper.user.UserMapper;
 import co.com.bancolombia.usecase.user.usecase.api.UserServicePort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

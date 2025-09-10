@@ -1,4 +1,4 @@
-package co.com.bancolombia.model.user.globalmessage;
+package co.com.bancolombia.model.globalmessage;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -13,9 +13,13 @@ public enum GlobalMessage {
     NOT_FOUND_EMAIL(GlobalMessage.STATUS_CODE_404, "Email not found"),
     DATABASE_ERROR(GlobalMessage.STATUS_CODE_500, "Database is down"),
     BAD_CREDENTIALS(GlobalMessage.STATUS_CODE_500, "Bad credentials"),
-    INSUFFICIENT_STOCK(GlobalMessage.STATUS_CODE_400, "There is not enough stock");
+    ACCESS_DENIED(GlobalMessage.STATUS_CODE_403, "Access denied: You do not have sufficient permissions"),
+    UNAUTHORIZED(GlobalMessage.STATUS_CODE_401, "Unauthorized: invalid or missing token");
+
 
     public static final String STATUS_CODE_400 = "400";
+    public static final String STATUS_CODE_401 = "401";
+    public static final String STATUS_CODE_403 = "403";
     public static final String STATUS_CODE_404 = "404";
     public static final String STATUS_CODE_500 = "500";
 
