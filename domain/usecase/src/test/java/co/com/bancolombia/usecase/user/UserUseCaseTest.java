@@ -1,11 +1,11 @@
-package co.com.bancolombia.usecase;
+package co.com.bancolombia.usecase.user;
 
 import co.com.bancolombia.model.user.gateways.RolePersistencePort;
 import co.com.bancolombia.model.user.gateways.UserPersistencePort;
 import co.com.bancolombia.model.globalmessage.GlobalMessage;
 import co.com.bancolombia.model.user.model.RoleModel;
 import co.com.bancolombia.model.user.model.UserModel;
-import co.com.bancolombia.usecase.user.exception.BusinessException;
+import co.com.bancolombia.usecase.exception.BusinessException;
 import co.com.bancolombia.usecase.user.usecase.UserUseCase;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

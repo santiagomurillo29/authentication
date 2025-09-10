@@ -1,0 +1,52 @@
+services:
+  postgres-auth:
+    image: postgres:15
+    container_name: postgres-auth
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: authentication_db
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres-auth-data:/var/lib/postgresql/data
+    networks:
+      - spring-network
+
+  pgadmin-auth:
+    image: dpage/pgadmin4
+    container_name: pgadmin-auth
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "8082:80"
+    networks:
+      - spring-network
+    depends_on:
+      - postgres-auth
+
+  authentication:
+    image: authentication
+    container_name: authentication
+    build:
+      context: .
+      dockerfile: Dockerfile
+      no_cache: true
+    depends_on:
+      - postgres-auth
+    ports:
+      - "8085:8085"
+    environment:
+      SPRING_R2DBC_URL: r2dbc:postgresql://postgres-auth:5432/authentication_db
+      SPRING_R2DBC_USERNAME: root
+      SPRING_R2DBC_PASSWORD: password
+      JAVA_OPTS: -XX:+UseContainerSupport -XX:MaxRAMPercentage=70 -Djava.security.egd=file:/dev/./urandom
+    networks:
+      - spring-network
+
+volumes:
+  postgres-data:
+networks:
+  spring-network:
+

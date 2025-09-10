@@ -1,10 +1,11 @@
-package co.com.bancolombia.r2dbc.adapter;
+package co.com.bancolombia.r2dbc.adapter.user;
 
 import co.com.bancolombia.model.user.gateways.UserPersistencePort;
 import co.com.bancolombia.model.user.model.UserModel;
+import co.com.bancolombia.r2dbc.adapter.role.RoleAdapterR2dbc;
 import co.com.bancolombia.r2dbc.health.R2dbcSafeExecutor;
-import co.com.bancolombia.r2dbc.mapper.UserMapperR2dbc;
-import co.com.bancolombia.r2dbc.repository.UserRepository;
+import co.com.bancolombia.r2dbc.mapper.user.UserMapperR2dbc;
+import co.com.bancolombia.r2dbc.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
@@ -57,6 +58,4 @@ public class UserAdapterR2dbc implements UserPersistencePort {
                         .doOnError(e -> log.error("Error finding user by email {}: {}", email, e.getMessage()))
                         .switchIfEmpty(Mono.empty()));
     }
-
-
 }

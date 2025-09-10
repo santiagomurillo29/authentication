@@ -1,6 +1,4 @@
-package co.com.bancolombia.model.user.model.user;
-
-import co.com.bancolombia.model.user.model.role.RoleModel;
+package co.com.bancolombia.model.user.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

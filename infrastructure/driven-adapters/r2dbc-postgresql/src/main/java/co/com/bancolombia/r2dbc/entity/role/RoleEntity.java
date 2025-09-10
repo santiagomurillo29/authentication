@@ -1,4 +1,4 @@
-package co.com.bancolombia.r2dbc.entity;
+package co.com.bancolombia.r2dbc.entity.role;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -2,9 +2,9 @@ package co.com.bancolombia.usecase.user.usecase;
 
 import co.com.bancolombia.model.user.gateways.RolePersistencePort;
 import co.com.bancolombia.model.user.gateways.UserPersistencePort;
-import co.com.bancolombia.model.user.globalmessage.GlobalMessage;
+import co.com.bancolombia.model.globalmessage.GlobalMessage;
 import co.com.bancolombia.model.user.model.UserModel;
-import co.com.bancolombia.usecase.user.exception.BusinessException;
+import co.com.bancolombia.usecase.exception.BusinessException;
 import co.com.bancolombia.usecase.user.usecase.api.UserServicePort;
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Mono;
@@ -14,7 +14,6 @@ public class UserUseCase implements UserServicePort {
 
     private final UserPersistencePort userPersistencePort;
     private final RolePersistencePort rolePersistencePort;
-
 
     @Override
     public Mono<UserModel> createUser(UserModel userModel) {

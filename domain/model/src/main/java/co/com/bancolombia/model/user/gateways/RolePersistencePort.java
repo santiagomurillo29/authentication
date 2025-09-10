@@ -1,6 +1,6 @@
-package co.com.bancolombia.model.user.gateways.role;
+package co.com.bancolombia.model.user.gateways;
 
-import co.com.bancolombia.model.user.model.role.RoleModel;
+import co.com.bancolombia.model.user.model.RoleModel;
 import reactor.core.publisher.Mono;
 
 public interface RolePersistencePort {

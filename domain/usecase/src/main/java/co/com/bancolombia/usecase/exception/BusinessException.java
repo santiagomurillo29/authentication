@@ -1,4 +1,4 @@
-package co.com.bancolombia.usecase.user.exception;
+package co.com.bancolombia.usecase.exception;
 
 import co.com.bancolombia.model.globalmessage.GlobalMessage;
 

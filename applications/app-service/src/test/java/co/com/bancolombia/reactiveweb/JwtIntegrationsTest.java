@@ -1,11 +1,10 @@
-package co.com.bancolombia.api;
+package co.com.bancolombia.reactiveweb;
 
+import co.com.bancolombia.MainApplication;
 import co.com.bancolombia.authsecurity.jwt.provider.JwtProvider;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringBootConfiguration;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebTestClient;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.TestConfiguration;
@@ -15,17 +14,16 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.test.web.reactive.server.WebTestClient;
+import org.springframework.web.reactive.function.server.RequestPredicates;
 import org.springframework.web.reactive.function.server.RouterFunction;
+import org.springframework.web.reactive.function.server.RouterFunctions;
 import org.springframework.web.reactive.function.server.ServerResponse;
-
 import java.util.List;
-
-import static org.springframework.web.reactive.function.server.RequestPredicates.GET;
-import static org.springframework.web.reactive.function.server.RouterFunctions.route;
 
 @AutoConfigureWebTestClient
 @SpringBootTest(
         webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
+        classes = {MainApplication.class, JwtIntegrationsTest.TestRouterConfig.class},
         properties = {
                 "jwt.expiration=360000",
                 "jwt.secret=mysuperlongsecretkeythatismorethan32bytes123!",
@@ -37,8 +35,10 @@ public class JwtIntegrationsTest {
     static class TestRouterConfig {
         @Bean
         public RouterFunction<ServerResponse> testRoutes() {
-            return route(GET("/api/test-protected"),
-                    request -> ServerResponse.ok().bodyValue("Hello, integrationUser"));
+            return RouterFunctions.route()
+                    .GET("/api/test-protected",
+                            request -> ServerResponse.ok().bodyValue("Hello, integrationUser"))
+                    .build();
         }
     }
 

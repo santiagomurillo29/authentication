@@ -1,6 +1,6 @@
-package co.com.bancolombia.model.user.gateways.user;
+package co.com.bancolombia.model.user.gateways;
 
-import co.com.bancolombia.model.user.model.user.UserModel;
+import co.com.bancolombia.model.user.model.UserModel;
 import reactor.core.publisher.Mono;
 
 public interface UserPersistencePort {
