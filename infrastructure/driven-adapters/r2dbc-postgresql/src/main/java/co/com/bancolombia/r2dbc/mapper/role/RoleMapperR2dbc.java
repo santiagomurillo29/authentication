@@ -6,6 +6,5 @@ import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
 public interface RoleMapperR2dbc {
-    RoleEntity toEntityRole(RoleModel roleModel);
     RoleModel toModelRole(RoleEntity roleEntity);
 }

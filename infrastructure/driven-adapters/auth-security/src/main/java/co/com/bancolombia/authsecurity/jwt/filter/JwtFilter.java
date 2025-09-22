@@ -51,7 +51,7 @@ public class JwtFilter implements WebFilter {
 
         return jwtProvider.validate(token)
                 .flatMap(valid -> {
-                    if (!valid) {
+                    if (Boolean.FALSE.equals(valid)) {
                         return authenticationEntryPoint.commence(exchange, new BadCredentialsException("invalid or expired token"));
                     }
 

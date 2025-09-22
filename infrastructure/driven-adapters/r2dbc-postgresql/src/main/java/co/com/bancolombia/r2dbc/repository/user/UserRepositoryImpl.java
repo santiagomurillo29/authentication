@@ -19,7 +19,7 @@ public class UserRepositoryImpl implements UserRepositoryCustom {
     @Override
     public Mono<UserWithPassword> findUserWithCredentialsByEmailCustom(String email) {
         String sql = """
-            SELECT 
+            SELECT \s
               u.id_user,
               u.name_user,
               u.last_name_user,
@@ -36,7 +36,7 @@ public class UserRepositoryImpl implements UserRepositoryCustom {
             JOIN role r ON r.id_role = u.id_role
             JOIN user_credentials c ON c.id_user = u.id_user
             WHERE u.email_user = :email
-            """;
+           \s""";
 
         return db.sql(sql)
                 .bind("email", email)

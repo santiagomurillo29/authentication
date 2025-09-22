@@ -23,7 +23,7 @@ public class UserAdapterR2dbc implements UserPersistencePort {
 
     @Override
     public Mono<UserModel> saveUser(UserModel userModel) {
-        return r2dbcSafeExecutor.executeMono(() ->
+        return  r2dbcSafeExecutor.executeMono(() ->
                 userRepository.save(userMapperR2dbc.toEntityUser(userModel))
                         .doOnSubscribe(sub -> log.info("Saving user: {}", userModel))
                         .map(userMapperR2dbc::toModelUser)
@@ -35,7 +35,7 @@ public class UserAdapterR2dbc implements UserPersistencePort {
                                         }))
                         .doOnSuccess(saved -> log.info("user saved successfully: {}", saved))
                         .doOnError(e -> log.error("Error saving user: {}", e.getMessage()))
-                );
+        );
     }
 
     @Override
@@ -50,12 +50,13 @@ public class UserAdapterR2dbc implements UserPersistencePort {
 
     @Override
     public Mono<UserModel> findUserByEmail(String email) {
-        return r2dbcSafeExecutor.executeMono(() ->
+        return  r2dbcSafeExecutor.executeMono(() ->
                 userRepository.findByEmailUser(email)
                         .doOnSubscribe(sub -> log.info("Finding user with email: {}", email))
                         .map(userMapperR2dbc::toModelUser)
                         .doOnSuccess(found -> log.info("User found with email: {}", found))
                         .doOnError(e -> log.error("Error finding user by email {}: {}", email, e.getMessage()))
-                        .switchIfEmpty(Mono.empty()));
+                        .switchIfEmpty(Mono.empty())
+        );
     }
 }

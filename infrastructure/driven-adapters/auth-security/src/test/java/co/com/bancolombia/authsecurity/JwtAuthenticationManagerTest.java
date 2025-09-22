@@ -14,7 +14,7 @@ import reactor.test.StepVerifier;
 
 import java.util.List;
 
-public class JwtAuthenticationManagerTest {
+class JwtAuthenticationManagerTest {
 
     private JwtProvider jwtProvider;
     private JwtAuthenticationManager jwtAuthenticationManager;

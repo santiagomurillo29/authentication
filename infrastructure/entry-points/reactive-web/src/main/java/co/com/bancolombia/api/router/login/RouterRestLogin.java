@@ -25,7 +25,7 @@ public class RouterRestLogin {
                     path = "/api/v1/login",
                     method = RequestMethod.POST,
                     beanClass = HandlerLogin.class,
-                    beanMethod = "Login",
+                    beanMethod = "login",
                     consumes = "application/json",
                     produces = "application/json",
                     operation = @Operation(
@@ -53,6 +53,6 @@ public class RouterRestLogin {
             )
     })
     public RouterFunction<ServerResponse> routerFunctionLogin(HandlerLogin handlerLogin) {
-        return route(POST("/api/v1/login"), handlerLogin::Login);
+        return route(POST("/api/v1/login"), handlerLogin::login);
     }
 }

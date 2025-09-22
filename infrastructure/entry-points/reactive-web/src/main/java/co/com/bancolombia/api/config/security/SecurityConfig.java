@@ -17,7 +17,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.server.SecurityWebFilterChain;
 import org.springframework.security.web.server.ServerAuthenticationEntryPoint;
 import org.springframework.security.web.server.authorization.ServerAccessDeniedHandler;
-import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
 import java.nio.charset.StandardCharsets;
@@ -62,8 +61,7 @@ public class SecurityConfig {
     @Bean
     public ServerAuthenticationEntryPoint unauthorizedEntryPoint() {
         return (exchange, ex) -> {
-            ServerWebExchange responseExchange = exchange;
-            var response = responseExchange.getResponse();
+            var response = exchange.getResponse();
             response.setStatusCode(HttpStatus.UNAUTHORIZED);
             response.getHeaders().setContentType(MediaType.APPLICATION_JSON);
             String body = """

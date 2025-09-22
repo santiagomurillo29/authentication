@@ -14,10 +14,10 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.test.web.reactive.server.WebTestClient;
-import org.springframework.web.reactive.function.server.RequestPredicates;
 import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.RouterFunctions;
 import org.springframework.web.reactive.function.server.ServerResponse;
+
 import java.util.List;
 
 @AutoConfigureWebTestClient
@@ -29,7 +29,7 @@ import java.util.List;
                 "jwt.secret=mysuperlongsecretkeythatismorethan32bytes123!",
         }
 )
-public class JwtIntegrationsTest {
+class JwtIntegrationsTest {
 
     @TestConfiguration
     static class TestRouterConfig {

@@ -6,29 +6,20 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+
 import java.util.function.Supplier;
 
 @Component
 @RequiredArgsConstructor
 public class R2dbcSafeExecutor {
-
-    private final R2dbcHealthChecker healthChecker;
-
     public <T> Mono<T> executeMono(Supplier<Mono<T>> operation) {
-        return healthChecker.isDatabaseUp().flatMap(isUp -> {
-            if (!isUp) {
-                return Mono.error(new DataBaseException(GlobalMessage.DATABASE_ERROR));
-            }
-            return operation.get();
-        });
+        return operation.get()
+                .onErrorMap(e -> new DataBaseException(GlobalMessage.DATABASE_ERROR, e));
     }
 
     public <T> Flux<T> executeFlux(Supplier<Flux<T>> operation) {
-        return healthChecker.isDatabaseUp().flatMapMany(isUp -> {
-            if (!isUp) {
-                return Flux.error(new DataBaseException(GlobalMessage.DATABASE_ERROR));
-            }
-            return operation.get();
-        });
+        return operation.get()
+                .onErrorMap(e -> new DataBaseException(GlobalMessage.DATABASE_ERROR, e));
     }
 }
+

@@ -29,5 +29,4 @@ public class RoleAdapterR2dbc implements RolePersistencePort {
                         .doOnError(e -> log.error("Error finding role by id {}: {}", idRole, e.getMessage()))
         );
     }
-
 }
