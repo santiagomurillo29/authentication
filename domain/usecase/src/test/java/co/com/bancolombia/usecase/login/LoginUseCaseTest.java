@@ -22,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.mockito.BDDMockito.given;
 
 @ExtendWith(MockitoExtension.class)
-public class LoginUseCaseTest {
+class LoginUseCaseTest {
 
     @Mock
     LoginPersistencePort repoLogin;
@@ -55,7 +55,8 @@ public class LoginUseCaseTest {
 
         StepVerifier.create(useCase.login(request))
                 .expectErrorSatisfies(error -> { assertInstanceOf(BusinessException.class, error);
-                        assertEquals(GlobalMessage.NOT_FOUND_EMAIL.getMessage(), error.getMessage());                })
+                        assertEquals(GlobalMessage.NOT_FOUND_EMAIL.getMessage(), error.getMessage());
+                })
                 .verify();
     }
 }

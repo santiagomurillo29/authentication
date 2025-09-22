@@ -23,7 +23,8 @@ import static org.mockito.BDDMockito.given;
 @ContextConfiguration(classes = {RouterRestLogin.class, HandlerLogin.class})
 @WebFluxTest
 @ImportAutoConfiguration(exclude = { org.springframework.boot.autoconfigure.security.reactive.ReactiveSecurityAutoConfiguration.class })
-public class RouterRestLoginTest {
+@SuppressWarnings("unused")
+class RouterRestLoginTest {
 
     @Autowired
     private WebTestClient webTestClient;

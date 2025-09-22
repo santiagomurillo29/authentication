@@ -7,7 +7,7 @@ services:
       POSTGRES_PASSWORD: password
       POSTGRES_DB: authentication_db
     ports:
-      - "5433:5432"
+      - "5435:5432"
     volumes:
       - postgres-auth-data:/var/lib/postgresql/data
     networks:
@@ -27,7 +27,6 @@ services:
       - postgres-auth
 
   authentication:
-    image: authentication
     container_name: authentication
     build:
       context: .
@@ -46,7 +45,8 @@ services:
       - spring-network
 
 volumes:
-  postgres-data:
+  postgres-auth-data:
+
 networks:
   spring-network:
 

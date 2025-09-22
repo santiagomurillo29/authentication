@@ -107,6 +107,4 @@ public class UserModel {
     public void setRole(RoleModel role) {
         this.role = role;
     }
-
-
 }

@@ -6,9 +6,13 @@ spring:
   devtools:
     add-properties: false
   r2dbc:
-    url: ${SPRING_R2DBC_URL:r2dbc:postgresql://postgres-auth:5432/authentication_db}
-    username: ${SPRING_R2DBC_USERNAME:root}
-    password: ${SPRING_R2DBC_PASSWORD:password}
+    url: "${SPRING_R2DBC_URL:r2dbc:postgresql://postgres-auth:5432/authentication_db}"
+    username: "${SPRING_R2DBC_USERNAME:root}"
+    password: "${SPRING_R2DBC_PASSWORD:password}"
+    pool:
+      initial-size: 5
+      max-size: 20
+      max-idle-time: 30m
   sql:
     init:
       mode: always
@@ -24,16 +28,6 @@ adapters:
     schema: public
     username: root
     password: password
-
-#adapters:
-#    r2dbc:
-#      host: localhost
-#      port: 5432
-#      database: Authentication
-#      schema: public
-#      username: postgres
-#      password: 30052630
-
 management:
   endpoints:
     web:
@@ -44,8 +38,7 @@ management:
       probes:
         enabled: true
 cors:
-  allowed-origins: "http://localhost:4200,http://localhost:8080"
-
+  allowed-origins: "http://localhost:4200,http://localhost:8085"
 jwt:
   secret: "mysuperlongsecretkeythatismorethan32bytes123!"
   expiration: 3600000

@@ -1,5 +1,6 @@
 package co.com.bancolombia.authsecurity.jwt.provider;
 
+import co.com.bancolombia.model.user.gateways.TokenAuthSecurityPort;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
@@ -20,7 +21,7 @@ import java.util.Date;
 import java.util.logging.Logger;
 
 @Component
-public class JwtProvider  {
+public class JwtProvider implements TokenAuthSecurityPort {
 
     private static final Logger LOGGER =  Logger.getLogger(JwtProvider.class.getName());
 

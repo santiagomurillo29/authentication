@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.ServerResponse;
+
 import static org.springframework.web.reactive.function.server.RequestPredicates.GET;
 import static org.springframework.web.reactive.function.server.RequestPredicates.POST;
 import static org.springframework.web.reactive.function.server.RouterFunctions.route;
@@ -26,7 +27,7 @@ public class RouterRestUser {
                     path = "/api/v1/usuarios",
                     method = RequestMethod.GET,
                     beanClass = HandlerUser.class,
-                    beanMethod = "GetUser",
+                    beanMethod = "getUser",
                     operation = @Operation(
                             summary = "Get all users",
                             responses = {
@@ -38,7 +39,7 @@ public class RouterRestUser {
                     path = "/api/v1/usuario/correo",
                     method = RequestMethod.GET,
                     beanClass = HandlerUser.class,
-                    beanMethod = "GetUserByEmail",
+                    beanMethod = "getUserByEmail",
                     operation = @Operation(
                             operationId = "getUserByEmail",
                             summary = "Get user by email",
@@ -59,7 +60,7 @@ public class RouterRestUser {
                     path = "/api/v1/usuarios",
                     method = RequestMethod.POST,
                     beanClass = HandlerUser.class,
-                    beanMethod = "CreateUser",
+                    beanMethod = "createUser",
                     consumes = "application/json",
                     produces = "application/json",
                     operation = @Operation(
@@ -87,8 +88,9 @@ public class RouterRestUser {
             )
     })
     public RouterFunction<ServerResponse> routerFunction(HandlerUser handlerUser) {
-        return route(GET("/api/v1/usuarios"), handlerUser::GetUser)
-                .andRoute(GET("/api/v1/usuario/correo"), handlerUser::GetUserByEmail)
-                .andRoute(POST("/api/v1/usuarios"), handlerUser::CreateUser);
+        return route(GET("/api/v1/usuario/correo"), handlerUser::getUserByEmail)
+                .andRoute(GET("/health"), request -> handlerUser.getHealth())
+                .andRoute(GET("/liveness"), request -> handlerUser.getLiveness())
+                .andRoute(POST("/api/v1/usuarios"), handlerUser::createUser);
     }
 }

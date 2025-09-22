@@ -1,7 +1,6 @@
 package co.com.bancolombia.model.user.model;
 
 public class RoleModel {
-
     private Long idRole;
     private String nameRole;
     private String descriptionRole;
